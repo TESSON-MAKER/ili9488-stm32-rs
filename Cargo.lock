@@ -91,9 +91,9 @@ checksum = "1fd0f2584146f6f2ef48085050886acf353beff7305ebd1ae69500e27c67f64b"
 
 [[package]]
 name = "cc"
-version = "1.3.0"
+version = "1.4.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "c89588d05638b5b4594a3348a2d6c20277e43a7f5c5202b05cc56888475a47b8"
+checksum = "5add81bb678e6cb321aff7fa0dc7689ad82b112dbc032cea19f91d6b8e3582b9"
 dependencies = [
  "find-msvc-tools",
  "shlex",
@@ -106,10 +106,19 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "9330f8b2ff13f34540b44e946ef35111825727b38d33286ef986142615121801"
 
 [[package]]
-name = "cordyceps"
-version = "0.3.4"
+name = "chrono"
+version = "0.4.45"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "688d7fbb8092b8de775ef2536f36c8c31f2bc4006ece2e8d8ad2d17d00ce0a2a"
+checksum = "1aa79e62e7697b8e29b513a68abacf485adcd1fe8284a4316c5ae868e6633327"
+dependencies = [
+ "num-traits",
+]
+
+[[package]]
+name = "cordyceps"
+version = "0.3.5"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "5b9ab7e0ca1d179628fa0172b2b97203c7fa0cd81be2448bd446fb9559ca9261"
 dependencies = [
  "loom",
  "tracing",
@@ -130,18 +139,18 @@ dependencies = [
 
 [[package]]
 name = "cortex-m-rt"
-version = "0.7.5"
+version = "0.7.6"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "801d4dec46b34c299ccf6b036717ae0fce602faa4f4fe816d9013b9a7c9f5ba6"
+checksum = "9c439b23bf18154d8a634543caf1ee73cceb723f2902f7ea243634159a00fd47"
 dependencies = [
  "cortex-m-rt-macros",
 ]
 
 [[package]]
 name = "cortex-m-rt-macros"
-version = "0.7.5"
+version = "0.7.6"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "e37549a379a9e0e6e576fd208ee60394ccb8be963889eebba3ffe0980364f472"
+checksum = "061a75f3e7f3f01d649668d68e02d0ef92c7041a9c97b8fe6bc354ddbf40822d"
 dependencies = [
  "proc-macro2",
  "quote",
@@ -246,6 +255,16 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "d4b8a88685455ed29a21542a33abd9cb6510b6b129abadabdcef0f4c55bc8f61"
 dependencies = [
  "litrs",
+]
+
+[[package]]
+name = "ds323x"
+version = "0.7.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "6e44a8956eeecab3afcbab217b63fad8122cf0a4a8fe34ebd862e9d6802c2633"
+dependencies = [
+ "embedded-hal 1.0.0",
+ "rtcc",
 ]
 
 [[package]]
@@ -474,15 +493,6 @@ dependencies = [
 ]
 
 [[package]]
-name = "embedded-dma"
-version = "0.2.0"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "994f7e5b5cb23521c22304927195f236813053eb9c065dd2226a32ba64695446"
-dependencies = [
- "stable_deref_trait",
-]
-
-[[package]]
 name = "embedded-graphics"
 version = "0.8.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -506,12 +516,11 @@ dependencies = [
 ]
 
 [[package]]
-name = "embedded-graphics-framebuf"
-version = "0.5.0"
+name = "embedded-graphics-profont"
+version = "0.4.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "22354420f68727fa24d1e2741dae1e9a041065e80fb63b35a8d19c647a85be76"
+checksum = "bfa09f61c980f09d05a78d18b8535d401fc1950b16cd395c65eb7d7ea640f7d2"
 dependencies = [
- "embedded-dma",
  "embedded-graphics",
 ]
 
@@ -716,25 +725,18 @@ version = "0.1.0"
 dependencies = [
  "cortex-m",
  "cortex-m-rt",
- "defmt 1.1.1",
  "defmt-rtt",
- "embassy-embedded-hal",
+ "ds323x",
  "embassy-executor",
  "embassy-stm32",
- "embassy-sync",
  "embassy-time",
  "embedded-graphics",
- "embedded-graphics-framebuf",
- "embedded-hal 1.0.0",
- "embedded-hal-async",
+ "embedded-graphics-profont",
  "embedded-hal-bus",
- "embedded-io 0.7.1",
- "embedded-io-async 0.7.0",
- "embedded-storage",
  "heapless 0.9.3",
  "mipidsi",
- "panic-halt",
  "panic-probe",
+ "static_cell",
 ]
 
 [[package]]
@@ -745,9 +747,9 @@ checksum = "bbd2bcb4c963f2ddae06a2efc7e9f3591312473c50c6685e1f298068316e66fe"
 
 [[package]]
 name = "libc"
-version = "0.2.186"
+version = "0.2.189"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "68ab91017fe16c622486840e4c83c9a37afeff978bd239b5293d61ece587de66"
+checksum = "3eaf3ede3fee6db1a4c2ee091bf8a8b4dccdc6d17f656fb07896ee72867612f2"
 
 [[package]]
 name = "litrs"
@@ -846,12 +848,6 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "9f7c3e4beb33f85d45ae3e3a1792185706c8e16d043238c593331cc7cd313b50"
 
 [[package]]
-name = "panic-halt"
-version = "0.2.0"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "de96540e0ebde571dc55c73d60ef407c653844e6f9a1e2fdbd40c07b9252d812"
-
-[[package]]
 name = "panic-probe"
 version = "1.0.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -933,6 +929,15 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "d6f6ff9a378485b298a5286656da665ba74413d36db0979633275d2e708145d4"
 
 [[package]]
+name = "rtcc"
+version = "0.4.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "34cdafab440283cfef25f6b08e6dde7339c80efa920865c96a4e1923caae0ee7"
+dependencies = [
+ "chrono",
+]
+
+[[package]]
 name = "rustc_version"
 version = "0.2.3"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -1008,6 +1013,15 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "a2eb9349b6444b326872e140eb1cf5e7c522154d69e7a0ffb0fb81c06b37543f"
 
 [[package]]
+name = "static_cell"
+version = "2.1.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "0530892bb4fa575ee0da4b86f86c667132a94b74bb72160f58ee5a4afec74c23"
+dependencies = [
+ "portable-atomic",
+]
+
+[[package]]
 name = "stm32-fmc"
 version = "0.4.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -1057,9 +1071,9 @@ dependencies = [
 
 [[package]]
 name = "syn"
-version = "3.0.0"
+version = "3.0.3"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "f2fac314a64dc9a36e61a9eb4261a5e9bbfbc922b27e518af97bc32b926cf967"
+checksum = "53e9bae58849f64dfa4f5d5ae372c8341f7305f82a3868709269343628b659a3"
 dependencies = [
  "proc-macro2",
  "quote",
@@ -1083,7 +1097,7 @@ checksum = "43cbfe0cf76104d42a574802844187e84a305e531ed54455f11fbde0f10541cd"
 dependencies = [
  "proc-macro2",
  "quote",
- "syn 3.0.0",
+ "syn 3.0.3",
 ]
 
 [[package]]
